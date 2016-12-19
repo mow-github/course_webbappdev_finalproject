@@ -1,0 +1,166 @@
+/* START - GENERAL STYLING */
+
+/*set default font size: 16px eq 1rem*/
+html{
+  font-size: 16px;
+}
+/*show y-scrollbar: prevent "jump effect"*/
+body{
+  overflow-y:scroll;
+  color: grey;
+  font-family: 'Buda', cursive;
+}
+/*
+.form-control {
+  height: 3rem;
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: .2rem solid transparent;
+}
+!*bs3 tooltip*!
+.tooltip-inner {
+  background-color: yellowgreen;
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  padding: 1rem;
+}
+!*content separator betwwen every section*!
+.separator{
+  margin: 5rem 0 5rem 0;
+  border-top: .5rem solid yellowgreen;
+  border-bottom: .5rem solid yellowgreen;
+}
+.separator>h3{
+  margin: 0;
+  padding: 0;
+  font-size: 8rem;
+  line-height: 8rem;
+  text-align: center;
+  word-wrap: break-word;
+}
+!*go homme btn*!
+#homeBtn{
+  position: fixed;
+  top: auto;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 3rem;
+  z-index: 10;
+  cursor: pointer;
+}
+#homeBtn:hover{
+  color: yellowgreen;
+  transition: color 2s;
+}
+!* END - GENERAL STYLING *!
+
+
+
+!* START - CONTENT STYLING (parent / child image links) *!
+.content{
+  position: relative;
+  opacity: .6;
+  margin-bottom: 1rem;
+}
+.content:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+.content h3{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  background-color: yellowgreen;
+  color: white;
+}
+#mainContentMenu{
+  cursor: pointer;
+}
+#mainContentMenu:hover{
+  color: yellowgreen;
+}
+!*specific content (when one clicks the child image link.. show)*!
+#mainContentParent{
+  display: none;
+}
+#mainContentParent h4{
+  text-align: center;
+  opacity: .5;
+}
+#mainContentParent h4:hover{
+  cursor: pointer;
+  opacity: 1;
+}
+!* END - CONTENT STYLING *!
+
+!* START - FOOTER STYLING *!
+footer{
+!*  min-height: 1000px;*!
+}
+footer address p{
+  line-height: 2rem;
+}
+footer address p .glyphicon{
+  font-size: 2rem;
+}
+footer address p a{
+  font-size: 1rem;
+  vertical-align: top;
+}
+!*Note.. removed prefix footer.. so it also affects the form in the aside..*!
+.form-horizontal .form-group{
+  margin-top: 3rem;
+}
+.form-horizontal .form-control{
+  font-size: 1rem;
+  border-bottom: .2rem solid yellowgreen;
+}
+.form-horizontal textarea{
+  height: 10rem;
+  resize: vertical;
+}
+label{
+  cursor: pointer;
+}
+label:hover + div>input,
+label:hover + div>textarea{
+  border: .2rem solid yellowgreen;
+  transition: border 2s;
+}
+.alert{
+  font-size: .8rem;
+  text-align: right;
+  padding: .4rem;
+  margin: 0;
+  color: #a94442;
+}
+.form-horizontal button{
+  height: 4rem;
+}
+!* END - FOOTER STYLING *!
+
+
+!* START - ASIDE STYLING *!
+aside{
+  min-height: 1000px;
+}
+aside img{
+  width: 4rem;
+  height: auto;
+}
+
+!* END - ASIDE STYLING *!
+
+!*change separator css if screen size is less than 520px *!
+@media screen and (max-width: 520px) {
+  .separator>h3{
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+
+
+}
+*/
