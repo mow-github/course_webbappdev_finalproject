@@ -1,6 +1,6 @@
 # About: School project - Web app development
 #### School: LERNIA Javascript developer, YHJUST16, web app development, ( Stockholm, Sweden )
-##### Purpose: Showcase one's ability with different technologies
+##### Purpose: Showcase one's ability with different technologies. (A page about beer)
 ##### Author: Mats Wikmar, mow-github, matwik@gmail.com
 ##### Technologies:
 * HTML5
@@ -8,7 +8,7 @@
 * Bootstrap 3
 * Javascript
 * JQuery
-* API
+* API ( BreweryDB and FLICKR API )
 * AJAX
 * JSONP / JSON
 
@@ -26,8 +26,8 @@
 * It's a SPA ( Single Page Application )
 * Implemented some AJAX req with comments
 * JQuery is used for, min. 4x AJAX requests (with different data structure)
-* The user can fetch custom AJAX data with etc. a "search input field"
-* Progressbar for every AJAX request
+* The user can fetch custom AJAX data with etc. a "search input field"          (click diff category or ans q)
+* Progressbar for every AJAX request                                            (TODO)
 * Javascript and JQuery is used to manipulate the DOM and CSS + animate / effects some objects 
 * Added a custom.css with some styling
 * Added a custom.js with some styling

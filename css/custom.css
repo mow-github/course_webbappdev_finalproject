@@ -9,158 +9,339 @@ body{
   overflow-y:scroll;
   color: grey;
   font-family: 'Buda', cursive;
+  margin: 0;
+  padding: 0;
 }
-/*
+.header_bg{
+  height: 100vh;
+  background-image: url('../img/beer_bg.gif'); /*Cred: http://giphy.com/gifs/beer-cinemagraph-92wsX8GEoNTYA*/
+  background-position: center;
+  background-size: cover;
+}
+.header_bg > span{
+  position: relative;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -95%);
+  font-size: 4rem;
+  color: white;
+  cursor: pointer;
+  transition: color 2s ease;
+}
+.header_bg > span:hover{
+  color: #ffcc00;
+}
+.navbar{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  border-radius: 0;
+  border: 0;
+  padding-top: 1rem;
+  font-size: 2rem;
+  background-color: black;
+  z-index: 9999;
+}
+.navbar-inverse .navbar-nav>li>a,
+.navbar-inverse .navbar-brand,
+.navbar-toggle{
+  color: white;
+  transition: color 2s ease;
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+  color: #ffcc00;
+  text-decoration: underline;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+  background-color: black;
+}
+.navbar-toggle{
+  padding: .3rem;
+  font-size: 1rem;
+
+}
+
+
+/* START - breweryAPIobj PROGRESS IMAGE */
+#progress{
+  display: block;
+  margin: 0 auto;
+  height: 8rem;
+}
+
+/* START - SECTION H2 STYLING */
+
+section h2{
+  font-size: 4rem;
+  text-align: center;
+}
+section h4{
+  text-align: center;
+}
+section h5{
+  text-align: center;
+}
+.thumbnail{
+  position: relative;
+}
+.thumbnail img:hover + span{
+  opacity:1;
+}
+.thumbnail > span{
+  opacity:0;
+  position: absolute;
+  bottom:0;
+  left: 0;
+  padding: 1rem 0;
+  text-align: center;
+  background-color: black;
+  background-color: black;
+  color: #ffcc00;
+  width: 100%;
+  transition: all 2s ease .25s;
+}
+.thumbnail > span:hover{
+  opacity:1;
+}
+
+
+/* START - BLOCKQUOTE SEPARATOR STYLING */
+
+blockquote {
+  background-color: black;
+  opacity: .9;
+  margin: 3rem;
+  color: #ccc;
+  quotes: "\201C""\201D""\2018""\2019";
+  min-height: 350px;
+}
+blockquote:before {
+  color: #ffcc00;
+  content: open-quote;
+  font-size: 4rem;
+  margin-right: 0.25rem;
+  vertical-align: 1rem;
+}
+blockquote:after {
+  color: #ffcc00;
+  content: close-quote;
+  font-size: 4rem;
+  margin-right: 0.25rem;
+  vertical-align: -1rem;
+}
+blockquote p {
+  display: inline-block;
+}
+blockquote footer {
+  color: #ffcc00;
+}
+
+
+
+
+
+/* START - FORMS STYLING */
+
+
 .form-control {
-  height: 3rem;
+  height: 4rem;
   border-color: inherit;
   -webkit-box-shadow: none;
   box-shadow: none;
   border: .2rem solid transparent;
 }
-!*bs3 tooltip*!
-.tooltip-inner {
-  background-color: yellowgreen;
-  font-weight: bold;
+.form-group{
+  margin-top: 4rem;
+}
+label{
+  padding-left: .8rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+label:hover + input,
+label:hover + textarea{
+  border: .2rem solid #ffcc00;
+  transition: border 2s;
+}
+.form-group input[type="email"]:hover,
+.form-group textarea:hover{
+  border-left: .5rem solid #ffcc00;
+  border-right:.5rem solid #ffcc00;
+}
+
+.form-group input[type="email"],
+.form-group textarea{
+  background-image: url("../img/beer.png");
+  background-size: 4rem 4rem;
+  background-repeat: no-repeat;
+  text-indent: 4rem;
+  border-bottom: .2rem solid #ffcc00;
+}
+.form-group input:focus,
+.form-group textarea:focus{
   color: white;
-  font-size: 1rem;
-  padding: 1rem;
+  background: none;
+  text-indent: 0;
 }
-!*content separator betwwen every section*!
-.separator{
-  margin: 5rem 0 5rem 0;
-  border-top: .5rem solid yellowgreen;
-  border-bottom: .5rem solid yellowgreen;
+.form-group ::-webkit-input-placeholder{
+  color: black;
 }
-.separator>h3{
-  margin: 0;
-  padding: 0;
-  font-size: 8rem;
-  line-height: 8rem;
-  text-align: center;
-  word-wrap: break-word;
-}
-!*go homme btn*!
-#homeBtn{
-  position: fixed;
-  top: auto;
-  bottom: 1rem;
-  right: 1rem;
-  font-size: 3rem;
-  z-index: 10;
-  cursor: pointer;
-}
-#homeBtn:hover{
-  color: yellowgreen;
-  transition: color 2s;
-}
-!* END - GENERAL STYLING *!
-
-
-
-!* START - CONTENT STYLING (parent / child image links) *!
-.content{
-  position: relative;
-  opacity: .6;
-  margin-bottom: 1rem;
-}
-.content:hover{
-  opacity: 1;
-  cursor: pointer;
-}
-.content h3{
-  position: absolute;
-  top: 0;
-  width: 100%;
-  padding: 1rem;
-  background-color: yellowgreen;
-  color: white;
-}
-#mainContentMenu{
-  cursor: pointer;
-}
-#mainContentMenu:hover{
-  color: yellowgreen;
-}
-!*specific content (when one clicks the child image link.. show)*!
-#mainContentParent{
-  display: none;
-}
-#mainContentParent h4{
-  text-align: center;
-  opacity: .5;
-}
-#mainContentParent h4:hover{
-  cursor: pointer;
-  opacity: 1;
-}
-!* END - CONTENT STYLING *!
-
-!* START - FOOTER STYLING *!
-footer{
-!*  min-height: 1000px;*!
-}
-footer address p{
-  line-height: 2rem;
-}
-footer address p .glyphicon{
-  font-size: 2rem;
-}
-footer address p a{
-  font-size: 1rem;
-  vertical-align: top;
-}
-!*Note.. removed prefix footer.. so it also affects the form in the aside..*!
-.form-horizontal .form-group{
-  margin-top: 3rem;
-}
-.form-horizontal .form-control{
-  font-size: 1rem;
-  border-bottom: .2rem solid yellowgreen;
-}
-.form-horizontal textarea{
+.form-group textarea{
   height: 10rem;
   resize: vertical;
 }
-label{
-  cursor: pointer;
-}
-label:hover + div>input,
-label:hover + div>textarea{
-  border: .2rem solid yellowgreen;
-  transition: border 2s;
-}
-.alert{
+.form-group .alert{
   font-size: .8rem;
-  text-align: right;
-  padding: .4rem;
-  margin: 0;
+  text-decoration: underline;
   color: #a94442;
+  cursor: default;
 }
-.form-horizontal button{
-  height: 4rem;
+.form-group input:focus:invalid,
+.form-group textarea:focus:invalid{
+  background-color: black;
+  color: red;
 }
-!* END - FOOTER STYLING *!
+.form-group input:focus:valid,
+.form-group textarea:focus:valid{
+  background-color: black;
+  color: green;
+}
+
+label > span{
+  opacity: 0;
+  transition: all 2s ease .25s;
+}
+label:hover > span,
+label:focus > span{
+  opacity: 1;
+}
+
+.footerLast{
+  min-height: 150px;
+  background-color: black;
+  color: white;
+  margin-top:2rem;
+  padding-top: 2rem;
+}
+.footerLast p > a {
+  color: #ffcc00;
+}
 
 
-!* START - ASIDE STYLING *!
-aside{
-  min-height: 1000px;
+/* START - GLASS STYLING */
+
+/*
+  1. Image covers the entire screen height (~90vh)
+  2. Custom image slider
+*/
+.glassContainer{
+  position: relative;
+  height: 90vh;
 }
-aside img{
-  width: 4rem;
+.glassContainer > img.on{
+  height: inherit;
+  display: block;
+  margin: 0 auto;
+}
+.glassContainer > span:not(.info){
+  font-size: 3rem;
+  position: absolute;
+  cursor: pointer;
+  opacity: .5;
+  transition: all 2s ease .25s;
+}
+.glassContainer > span:not(.info):hover{
+  opacity: 1;
+  text-decoration: underline;
+}
+.glassContainer > span.glyphicon-arrow-left{
+  top: 50%;
+  left: 5%;
+  transform: translate(-5%, -50%);
+  display: none;
+}
+.glassContainer > span.glyphicon-arrow-right{
+  top: 50%;
+  left: 95%;
+  transform: translate(-95%, -50%);
+}
+.glassContainer > span.info{
+  position: absolute;
+  font-size: 1rem;
+  width: 100%;
+  bottom:0;
+  left: 0;
+  padding: 1rem 0;
+  text-align: center;
+  color: #ffcc00;
+  background-color: black;
+
+  opacity: 0;
+  transition: all 2s ease .25s;
+}
+.glassContainer > span.info:first-letter {
+  text-transform: uppercase;
+}
+
+.glassContainer > img.on:hover ~ span.info{
+  opacity: 1;
+}
+
+@media screen and (max-width: 520px){
+  .glassContainer > img.on{
+    width: 100%;
+  }
+}
+
+/* START - BEERONALITY STYLING */
+#beeronality{
+  background-color: black;
+  color: white;
+  padding: 2rem;
   height: auto;
 }
-
-!* END - ASIDE STYLING *!
-
-!*change separator css if screen size is less than 520px *!
-@media screen and (max-width: 520px) {
-  .separator>h3{
-    font-size: 4rem;
-    line-height: 4rem;
-  }
-
+#beeronality form > div label{
+  width: 100%;
+  font-size: 2rem;
 
 }
-*/
+#beeronality form > div input[type="radio"]{
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+#beeronality form > div input[type="radio"] + div{
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #ffcc00;
+}
+/* question end start*/
+#beeronality > div{
+  color: #ffcc00;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

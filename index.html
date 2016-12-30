@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="School project - Web app dev">
-  <meta name="keywords" content="html5, css3, js, jquery, bootstrap 3">
+  <meta name="keywords" content="html5, css3, js, jquery, bootstrap 3, Flickr API, BreweryDB API">
   <meta name="author" content="Mats Wikmar">
   <title>Know your beer</title>
   <link rel="icon" href="img/favicon.ico">
@@ -20,8 +20,140 @@
   <![endif]-->
 </head>
 <body>
+<!-- Header BG -->
+<header class="header_bg" id="home">
+  <span class="glyphicon glyphicon-download"></span>
+</header>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse">
   <div class="container">
-    <h1>beer</h1>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"
+              aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+        <span>Menu</span>
+      </button>
+      <a class="navbar-brand" href="#home">Know your beer</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Glass</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Beeronality</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
   </div>
+</nav>
+
+<!-- Glass -->
+<section id="glass">
+  <h2>Glass</h2>
+  <h4>Explore the endless possibilities with beer</h4>
+  <div class="glassContainer">
+    <!-- glassware image from breweryDB API (dynamic) -->
+    <img src="" alt="" class="on">
+    <!-- prev/next btns -->
+    <span class="glyphicon glyphicon-arrow-left" data-custom-direction="prev"></span>
+    <span class="glyphicon glyphicon-arrow-right" data-custom-direction="next"></span>
+    <!-- info tag (dynamic from breweryDB API)-->
+    <span class="info"></span>
+  </div>
+</section>
+
+<!-- Quote -->
+<blockquote id="quoteContainer">
+  <!-- dynamic data here -->
+  <p></p>
+  <footer></footer>
+</blockquote>
+
+<!-- Categories -->
+<div class="container">
+  <section id="categories">
+    <h2>Categories</h2>
+    <h4>Click on a category-text and enjoy the beers from flickr</h4>
+    <div class="row">
+      <!-- dynamic data here -->
+    </div> <!-- row -->
+  </section>
+</div> <!-- container -->
+
+<!-- Beeronality -->
+<div class="container">
+  <section id="beeronality">
+    <h2>Beeronality</h2>
+    <h4>What beer resonates with you ? Find out now!</h4>
+      <form>
+        <div class="form-group">
+          <label><!-- dynamic data --></label>
+          <input type="radio" name="question" value="1"><div><!-- dynamic data --></div>
+          <input type="radio" name="question" value="2"><div><!-- dynamic data --></div>
+          <input type="radio" name="question" value="3"><div><!-- dynamic data --></div>
+          <input type="radio" name="question" value="4"><div><!-- dynamic data --></div>
+        </div>
+      </form>
+  </section>
+</div> <!-- container -->
+
+
+<!-- Contact -->
+<div class="container">
+  <section id="contact">
+    <h2>Contact</h2>
+    <form>
+
+      <div class="form-group">
+        <label for="email">Email <span class="alert">Don't forget: @</span></label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Your email please" required>
+      </div>
+
+      <div class="form-group">
+        <label for="textarea">Message <span
+          class="alert">Don't forget your name.. and write at least 5 characters</span></label>
+        <textarea class="form-control" id="textarea" name="textarea" placeholder="Your message please" minlength="5"
+                  required></textarea>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Send" class="btn btn-success pull-right">
+      </div>
+
+    </form>
+  </section>
+</div> <!-- container -->
+
+
+<!-- Footer -->
+<footer class="footer footerLast">
+  <div class="col-xs-12 text-center">
+    <h4><span class="glyphicon glyphicon-envelope"></span> Email</h4>
+    <p><a href="mailto:info@knowyourbeer.com">info@knowyourbeer.com</a></p>
+    <p>&copy; 2016 Know your beer</p>
+  </div>
+</footer>
+
+<!-- BS3 modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body" id="myModalBody">
+        <!--dynamic data here from Flickr-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </body>
 </html>
