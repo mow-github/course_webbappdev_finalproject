@@ -26,9 +26,8 @@
 * It's a SPA ( Single Page Application )
 * Implemented some AJAX req with comments
 * JQuery is used for, min. 4x AJAX requests (with different data structure)
-* The user can fetch custom AJAX data with etc. a "search input field"          (click diff category or ans q)
-* Progressbar for every AJAX request                                            (TODO)
-* Javascript and JQuery is used to manipulate the DOM and CSS + animate / effects some objects 
+* The user can fetch custom AJAX data with: (click diff category or answer q)
+* Javascript and JQuery is used to manipulate the DOM and CSS + animate / effects some objects
 * Added a custom.css with some styling
 * Added a custom.js with some styling
 * Bootstrap 3 is implemented and it has support for mobile -> desktop sizes (xs,sm,md,lg)

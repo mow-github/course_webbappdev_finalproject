@@ -117,17 +117,16 @@ let breweryAPIobj = {
       url: this.url,
       method: this.method,
       data : { paramString : paramString },
-      success: ( response ) => {        /* changed from a arrow fn to a normal one*/
+      success: function( response ){
         console.log(response);
 
-        /* changed from a for-of to for */
-        for (let obj of response.data) {
-          this.brewery_glass.push(obj.name);
+        for(let i = 0; i< (response.data).length; i++){
+          breweryAPIobj.brewery_glass.push( (response.data)[i].name );
         }
-        createGlassSlider(this.brewery_glass);
+        createGlassSlider(breweryAPIobj.brewery_glass);
 
       },
-      error: ( response ) => {          /* changed from a arrow fn to a normal one*/
+      error:function( response ){
         console.log( response );
       }
     });
@@ -138,43 +137,50 @@ let breweryAPIobj = {
       url: this.url,
       method: this.method,
       data : { paramString : paramString },
-      success: ( response ) => {        /* changed from a arrow fn to a normal one*/
+      success: function( response ){
         cb(response.data); // Check Beeronality object
       },
-      error: ( response ) => {          /* changed from a arrow fn to a normal one*/
+      error: function( response ){
         console.log( response );
       }
     });
   },
   getCategories: function(paramString){
+    let _this = this;
+
     $.ajax({
       dataType: this.dataType,
       url: this.url,
       method: this.method,
       data : { paramString : paramString },
-      success: ( response ) => {            /* changed from a arrow fn to a normal one*/
-        clearInterval(this.loaderObj.stop);
-        this.createCategories(response.data);
-        this.init();
-        this.activateMouseEvent();
+      success: function( response ){
+        //console.log(response);
+         clearInterval(_this.loaderObj.stop);
+        _this.createCategories(response.data);
+        _this.init();
+        _this.activateMouseEvent();
       },
-      error: ( response ) => {               /* changed from a arrow fn to a normal one*/
+      error: function( response ){
         console.log( response );
       }
     });
   },
-  createCategories: (obj) => {                /* changed from a for-of to for*/
-    for(let item of obj){
-      if( item.name.length > 4 ){ this.brewery_categories.push(item.name.replaceAll("/","_")); }
+  createCategories: function(obj){
+    for(let i = 0; i< (obj).length; i++){
+      if( obj[i].name.length > 4 ){ breweryAPIobj.brewery_categories.push( obj[i].name.replaceAll("/","_")); }
     }
   },
   init: function(){
-    $(this.selector).fadeOut(this.fadeSpeed, () => {
-      $(this.selector).empty();
+    let _this = this;
+
+    $(this.selector).fadeOut(this.fadeSpeed, function(){
+      $(_this.selector).empty();
       breweryAPIobj.brewery_categories.shuffle();
 
       let frag = document.createDocumentFragment();
-      for (let category of breweryAPIobj.brewery_categories) {
+
+      for(let i = 0; i< (breweryAPIobj.brewery_categories).length; i++){
+        let category = breweryAPIobj.brewery_categories[i];
 
         let div = document.createElement("div");
         div.className = "col-xs-12 col-sm-6 col-md-4 col-lg-3";
@@ -193,25 +199,27 @@ let breweryAPIobj = {
         a.appendChild(span);
         frag.appendChild(div);
       }
-      $(this.selector).fadeIn(this.fadeSpeed).append(frag);
+      $(_this.selector).fadeIn(_this.fadeSpeed).append(frag);
     });
   },
   playCategories: function(){
-    this.stopInterval = setInterval(()=>{
-      this.init();
-    },this.intervalSpeed);
+    let _this = this;
+    this.stopInterval = setInterval(function(){
+      _this.init();
+    },_this.intervalSpeed);
   },
   activateMouseEvent: function (){
-    $(document).on("mouseover",this.selector,()=>{
-      clearInterval(this.stopInterval);
+    let _this = this;
+    $(document).on("mouseover",this.selector,function(){
+      clearInterval(_this.stopInterval);
     });
     $(document).on("click",".thumbnail",function(e){
       e.preventDefault();
       clearInterval(this.stopInterval);
       $(this).find("span").show();
     });
-    $(document).on("mouseout",this.selector,()=>{
-      this.playCategories();
+    $(document).on("mouseout",this.selector,function(){
+      _this.playCategories();
     });
     $(document).on("click",".thumbnail>span",function(e){
       e.preventDefault();
@@ -221,15 +229,17 @@ let breweryAPIobj = {
     });
   },
   loader: function(){
+    let _this = this;
+
     let pBar = document.createElement("img");
     pBar.setAttribute("src","img/beer.png");
     pBar.id = "progress";
     pBar.setAttribute("style","transform: rotate(0deg)");
     $(this.selector).append(pBar);
 
-    this.loaderObj.stop = setInterval(() => {
+    this.loaderObj.stop = setInterval( function(){
       let angle = Number( pBar.getAttribute("style").split("(")[1].split("deg)")[0] );
-      pBar.setAttribute("style","transform: rotate("+(angle+1+this.loaderObj.incFactor)+"deg)");
+      pBar.setAttribute("style","transform: rotate("+(angle+1+_this.loaderObj.incFactor)+"deg)");
     },100);
   },
   loaderObj: {
@@ -241,6 +251,8 @@ let breweryAPIobj = {
 breweryAPIobj.getGlass("/glassware");
 breweryAPIobj.loader();
 breweryAPIobj.getCategories("/categories");
+
+
 
 /**
  * @description
@@ -287,6 +299,7 @@ function createGlassSlider(brewery_glass){
 }
 
 
+
 /**
  * @description
  *  fetch data from FLICKR API based on the queryString
@@ -321,16 +334,18 @@ function createGlassSlider(brewery_glass){
  * */
 let flickrAPIobj = {
   getImages: function (queryString){
+    let _this = this;
+
     $.ajax({
       dataType: "json",
       url: "./api/flickr_api.php",
       method: "POST",
       data : { paramString : queryString.replaceAll(" ","+") },
-      success: ( response ) => {
+      success: function( response ){
         console.log( response );
-        this.buildImgPathAndAppend(response.photos.photo);
+        _this.buildImgPathAndAppend(response.photos.photo);
       },
-      error: ( response ) => {
+      error: function( response ){
         console.log( response );
       }
     });
@@ -348,11 +363,11 @@ let flickrAPIobj = {
       dataType: "json",
       url: FLICKR_BASE_URL+"method="+FLICKR_METHOD+"&api_key="+API_KEY+"&text="+FLICKR_TEXT+"&per_page="+FLICKR_PERPAGE+"&page="+FLICKR_PAGE+"&format=json&nojsoncallback=1",
       method: "POST",
-      success: ( response ) => {
+      success: function( response ){
         console.log( response );
         this.buildImgPathAndAppend(response.photos.photo);
       },
-      error: ( response ) => {
+      error: function( response ){
         console.log( response );
       }
     });
@@ -360,16 +375,21 @@ let flickrAPIobj = {
   buildImgPathAndAppend: function(obj){
     let selector = $("#myModalBody");
     selector.empty();
-    for(let item of obj){
+
+    for(let i = 0; i< (obj).length; i++){
+      let item = obj[i];
+
       let img = document.createElement("img");
       img.src = "https://farm"+item.farm+".staticflickr.com/"+item.server+"/"+item.id+"_"+item.secret+".jpg";
       img.height = 150;
       img.width = 150;
       selector.append(img);
     }
+
   }
 };
 //flickrAPIobj.getImagesNoProxy("cider beer");
+
 
 /**
  * @description
@@ -395,27 +415,31 @@ let quoteObj = {
   quoteNumberHolder: null,
 
   getQuotes: function (){
+    let _this = this;
+
     $.ajax({
       dataType: "json",
       url: this.url,
       method: "POST",
-      success: ( response ) => {
-        this.jsonObj = response;
-        this.addQuoteToDOM();
+      success: function( response ){
+        _this.jsonObj = response;
+        _this.addQuoteToDOM();
       },
-      error: ( response ) => {
+      error: function( response ){
         console.log( response );
       }
     });
   },
   addQuoteToDOM: function(){
+    let _this = this;
     this.switchQuote();
-    setInterval(() => {
-      this.selector.fadeOut(this.speed.fadeSpeed,() => {
-        this.switchQuote();
-        this.selector.fadeIn(this.speed.fadeSpeed);
+
+    setInterval(function(){
+      _this.selector.fadeOut(_this.speed.fadeSpeed,function(){
+        _this.switchQuote();
+        _this.selector.fadeIn(_this.speed.fadeSpeed);
       });
-    },this.speed.intervalSpeed);
+    },_this.speed.intervalSpeed);
   },
   switchQuote: function(){
     let randomNumber = Math.floor(Math.random()*this.jsonObj.length);
@@ -432,15 +456,6 @@ let quoteObj = {
 
 };
 quoteObj.getQuotes();
-
-
-
-
-
-
-
-
-
 
 
 
@@ -493,19 +508,20 @@ let BeeronalityObj = {
   total: 0,
   counter: 0,
   init: function(){
+    let _this = this;
 
     this.generateQuestion( this.counter );
 
-    $(document).on("click",this.inpSelector,(e) => {
+    $(document).on("click",this.inpSelector,function(e){
 
-      this.counter += 1;
-      this.total   += Number( $(e.target).val() );
+      _this.counter += 1;
+      _this.total   += Number( $(e.target).val() );
 
-      if( questionObj.length === this.counter ){
-        return this.endQuestion();
+      if( questionObj.length === _this.counter ){
+        return _this.endQuestion();
       }
 
-      this.generateQuestion( this.counter );
+      _this.generateQuestion( _this.counter );
 
     });
   },
@@ -547,17 +563,3 @@ let BeeronalityObj = {
 
 };
 BeeronalityObj.init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
