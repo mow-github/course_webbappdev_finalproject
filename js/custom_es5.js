@@ -81,6 +81,60 @@ $(".navbar li, .glyphicon-download,.navbar-brand").on("click",function(){
 
 /**
  * @description
+ *  1. a loader helper object to an ajax request (show/hide a modal with an rotating image)
+ *
+ * @notes
+ *  1. start method: init a rot. on the image
+ *  1. stop method:   end a rot. on the image (back to 0 and stop the interval)
+ *
+ * @improvements
+ *  1. -
+
+ * */
+let globalAJAXLoaderObj = {
+
+  intervalHolder: null,
+  setIntervalInc: 0,
+  modal: "#myModalLoader",
+  modalImg: "#myModalLoaderImg",
+
+  start: function(value){
+    let _this = this;
+    this.toggleModal(value);
+
+    this.intervalHolder = setInterval( function(){
+      $(_this.modalImg).css("transform", "rotate(" + (_this.setIntervalInc++) + "deg)");
+    },100);
+  },
+
+  stop: function(value){
+    this.toggleModal(value);
+    clearInterval(this.intervalHolder);
+    $(this.modalImg).css("transform", "rotate(" + (0) + "deg)");
+  },
+
+  toggleModal: function(value){
+    $(this.modal).modal(value);
+  }
+
+};
+
+
+/* chk when ajax start and finish */
+$(document).on({
+
+  ajaxStart: function(){
+    console.log("loading ajax");
+    globalAJAXLoaderObj.start("show");
+  },
+  ajaxStop: function() {
+    console.log("loading ajax done");
+    globalAJAXLoaderObj.stop("hide");
+  }
+});
+
+/**
+ * @description
  *  connecting to a BreweryDB API and output data in the DOM
  *  Example connection string: "http://api.brewerydb.com/v2/"+API_METHOD+"/?key="+API_KEY"
  *
