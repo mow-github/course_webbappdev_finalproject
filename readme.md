@@ -43,3 +43,6 @@
 [Homepage - bviking.se ](https://www.bviking.se)
 
 [LinkedIn profile ](https://www.linkedin.com/in/mats-wikmar)
+
+##### Contributions to project:
+[Github user ](https://github.com/Aknotofknots)
