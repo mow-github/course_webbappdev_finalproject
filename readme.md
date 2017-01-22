@@ -45,4 +45,4 @@
 [LinkedIn profile ](https://www.linkedin.com/in/mats-wikmar)
 
 ##### Contributions to project:
-[Github user ](https://github.com/Aknotofknots)
+[Github user - Aknotofknots ](https://github.com/Aknotofknots)
