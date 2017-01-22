@@ -321,7 +321,12 @@ label:focus > span{
 }
 
 
-
+/* loader ajax modal */
+#myModalLoader {
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 
 
